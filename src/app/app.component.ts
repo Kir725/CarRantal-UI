@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,34 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CarRantal-ng2';
+
+  // vehicles: VehicleModel[] = [];
+  //
+  // desiredVehicle : VehicleModel;
+  // vehicleExist = false;
+  //
+  // constructor(private vehicleService: VehicleService) {
+  // }
+  //
+  // ngOnInit(){
+  //   this.vehicleService
+  //     .getVehicles()
+  //     .subscribe((vehicles:VehicleModel[]) =>{
+  //     this.vehicles = vehicles;
+  //   })
+  // }
+  //
+  // findVehicle(id: number) {
+  //   this.vehicleService.getVehicleById(+id)
+  //     .subscribe((vehicle: VehicleModel) => {
+  //       this.desiredVehicle = vehicle;
+  //       this.vehicleExist = true;
+  //     });
+  // }
+  //
+  // deleteVehicle(vehicle:VehicleModel) {
+  //   this.vehicleService.deleteVehicle(vehicle.id).subscribe();
+  //
+  // }
+
 }
