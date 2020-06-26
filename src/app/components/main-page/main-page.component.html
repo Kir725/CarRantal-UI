@@ -1,0 +1,58 @@
+<div class="img-container" >
+<div class="container h-100">
+  <div class="row align-items-center h-100">
+    <div class="col-5 ml-3">
+      <div class="wrap-booking">
+        <h3>Забронировать машину</h3>
+        <form (ngSubmit)="searchCars()">
+          <div class="form-group">
+            <label for="pickupDate">Дата начала</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="выберите дату начала аренды"
+                name="dp"
+                id="pickupDate"
+                [(ngModel)]="pickupCalendar"
+                (ngModelChange)="pickupChange($event)"
+                ngbDatepicker #p="ngbDatepicker"
+                container="body">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="p.toggle()" type="button">
+                  <fa-icon [icon]="faCalendar"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pickupDate">Дата окончания</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="выберите дату окончания аренды"
+                name="dp"
+                id="dropOffDate"
+                [(ngModel)]="dropOffCalendar"
+                (ngModelChange)="dropOffChange($event)"
+                ngbDatepicker #d="ngbDatepicker"
+                container="body">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary"  (click)="d.toggle()" type="button">
+                  <fa-icon [icon]="faCalendar"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            [routerLink]="['/cars', pickupDate,dropOffDate]"
+            class="btn btn-success btn-lg btn-block mt-4"
+          >Поиск</button>
+        </form>
+
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+</div>

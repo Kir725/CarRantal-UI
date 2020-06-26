@@ -1,0 +1,56 @@
+<div class="wrap-login100">
+  <h4>Регистрация</h4>
+  <hr>
+  <div
+    class="alert alert-{{message.type}}"
+    *ngIf="message.text"
+  >
+    {{message.text}}
+  </div>
+  <hr *ngIf="message.text">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{'is-valid' : form.get('email').valid && form.get('email').touched,
+                    'is-invalid' : form.get('email').invalid && form.get('email').touched}"
+          id="email"
+          placeholder="Введите ваш email"
+          formControlName="email"
+          required
+        >
+        <div *ngIf="form.get('email').invalid && form.get('email').touched" class="invalid-feedback" >
+          <span *ngIf="email.errors.forbiddenEmail">Введенный Email занят</span>
+          <span *ngIf="email.errors.email">Введите корректный Email</span>
+          <span *ngIf="email.errors.required">Email не может быть пустым</span>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input
+          type="password"
+          class="form-control"
+          [ngClass]="{'is-valid' : password.valid && (password.dirty || password.touched),
+                    'is-invalid' : password.invalid && (password.dirty || password.touched)}"
+          id="password"
+          placeholder="Пароль"
+          formControlName="password"
+          required
+        >
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="invalid-feedback">
+          <span *ngIf="password.errors.required">Пароль не может быть пустым</span>
+          <span *ngIf="password.errors.minlength">Пароль должен быть больше 6ти символов</span>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-success btn-lg btn-block mt-4"
+        [disabled]="form.invalid"
+      >Зарегестрироваться</button>
+    </fieldset>
+  </form>
+</div>

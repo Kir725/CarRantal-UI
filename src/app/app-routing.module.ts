@@ -5,6 +5,7 @@ import {CarsPageComponent} from "./components/cars-page/cars-page.component";
 import {ContractConditionPageComponent} from "./components/contract-condition-page/contract-condition-page.component";
 import {ContactPageComponent} from "./components/contact-page/contact-page.component";
 import {ContractPageComponent} from "./components/contract-page/contract-page.component";
+import {ProfilePageComponent} from "./components/profile-page/profile-page.component";
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'condition', component: ContractConditionPageComponent},
   {path: 'contacts', component: ContactPageComponent},
   {path: 'contract/:carId/:pickupDate/:dropOffDate', component: ContractPageComponent},
+  {path: 'profile', component: ProfilePageComponent},
   ];
 
 @NgModule({

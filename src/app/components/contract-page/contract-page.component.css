@@ -1,0 +1,74 @@
+.rent_order_info{
+  padding: 37px 39px 10px;
+  background-color: #fff;
+}
+.rent_table{
+  margin: 0 -28px 24px;
+  line-height: 22px;
+}
+.rent_table td{
+  background-color: #f9f9f9;
+}
+.rent_table table thead td{
+  padding: 10px 10px 8px 28px;
+}
+.rent_table table tbody td{
+  padding: 10px 10px 8px 28px;
+}
+.divider{
+  padding: 1px 28px!important;
+  background-color: white!important;
+}
+table {
+  width: 100%;
+}
+.rent_table td:first-child {
+  width: 130px;
+}
+.rent_table td:nth-child(2) {
+  width: 100px;
+  text-align: center;
+}
+.rent_table td:nth-child(3) {
+  width: 100px;
+  padding-right: 28px!important;
+  text-align: right;
+}
+.rent-total{
+  margin: 0 -28px;
+}
+
+.rent-total td:first-child {
+}
+.rent-total td:last-child {
+  text-align: right;
+  font-size: 18px;
+}
+.rent-total td {
+  padding: 38px 28px 34px;
+  background-color: #eee;
+}
+
+.form-fields{
+  padding: 35px 30px 30px;
+}
+
+.form-input:focus {
+  outline: none !important;
+  background-color: #ffffff;
+  color: black!important;
+}
+
+.form-input{
+  color:black!important;
+  outline: none !important;
+  background-color: #ecf0f1;
+}
+.left-field{
+  float: left;
+  width: 48%;
+}
+.right-field{
+  float: right;
+  width: 48%;
+}

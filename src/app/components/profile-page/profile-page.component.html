@@ -1,0 +1,14 @@
+<div class="container-fluid bg-white">
+  <div class="container ">
+    <h3 class="mt-5 mb-3">Профиль</h3>
+    <div class="mb-5 mt-5 text-center"
+      *ngIf="!user.clientId">
+      <span class="h5">Пока у вас нет ни одного контракта, закажите машину, чтобы увидеть свою историю здесь.</span>
+    </div>
+    <div
+      *ngIf="user.clientId">
+      
+    </div>
+
+  </div>
+</div>

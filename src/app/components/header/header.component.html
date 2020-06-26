@@ -1,0 +1,30 @@
+<div
+*ngIf="authService.isLoggedIn(); else elseBlock"
+>
+  <app-menu-login></app-menu-login>
+</div>
+<ng-template #elseBlock><app-menu-logout></app-menu-logout></ng-template>
+
+
+
+<div class="container custom-menu">
+  <div class="row justify-content-center ">
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-outline-primary" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a class="nav-link" routerLink="/">Главная</a>
+    </label>
+    <label class="btn btn-outline-primary" routerLinkActive="active">
+      <a class="nav-link"  [routerLink]="'/cars'">Машины</a>
+    </label>
+    <label class="btn btn-outline-primary " routerLinkActive="active">
+      <a class="nav-link" [routerLink]="'/condition'">Правила аренды</a>
+    </label>
+    <label class="btn btn-outline-primary " routerLinkActive="active">
+      <a class="nav-link" [routerLink]="'/contacts'">Контакты</a>
+    </label>
+  </div>
+  </div>
+</div>
+
+
+

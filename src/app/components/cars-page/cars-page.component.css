@@ -1,0 +1,23 @@
+.single-car{
+  background-color: #fff;
+  margin-bottom: 10px;
+  /*margin-right: 25px;*/
+  padding: 10px 15px 10px 15px;
+  border: 2px solid #fff;
+}
+
+.search_header{
+  padding: 10px 0 0;
+
+}
+.cars_header{
+  padding: 5px 0 5px;
+}
+.rent_price{
+margin: 35px;
+}
+.search_body{
+  margin-left: 2px;
+  margin-right: 2px;
+  border-radius: 5px;
+}

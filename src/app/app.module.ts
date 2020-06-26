@@ -25,6 +25,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgbdDatepickerI18nModule} from "./datepicker-i18n/datepicker-i18n.module";
 import { ContractPageComponent } from './components/contract-page/contract-page.component';
 import {ClientService} from "./shared/services/client/client.service";
+import {TotalRentCostCalcService} from "./shared/services/totalRentCostCalc.service";
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import {ClientService} from "./shared/services/client/client.service";
     RegistrationComponent,
     MenuLoginComponent,
     MenuLogoutComponent,
-    ContractPageComponent
+    ContractPageComponent,
+    ProfilePageComponent
   ],
     imports: [
         BrowserModule,
@@ -53,7 +56,7 @@ import {ClientService} from "./shared/services/client/client.service";
         FontAwesomeModule,
       NgbdDatepickerI18nModule
     ],
-  providers: [VehicleService,UserService,AuthService,ClientService],
+  providers: [VehicleService,UserService,AuthService,ClientService,TotalRentCostCalcService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
