@@ -1,0 +1,256 @@
+<div class="mb-4">
+  <div>
+    <span class="h4">Машины</span>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="form-wrapper  bg-light">
+        <p class="h5"> Добавление машины</p>
+        <hr>
+        <div
+          class="alert alert-{{message.type}}"
+          *ngIf="message.text"
+        >
+          {{message.text}}
+        </div>
+        <hr *ngIf="message.text">
+        <form [formGroup]="form" (ngSubmit)="addCar()">
+          <div class="d-inline mt-2">
+            <div class="left-field">
+              <div class="form-group">
+                <label class="h6" for="make">Марка</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('make').valid && form.get('make').touched,
+                                      'is-invalid' : form.get('make').invalid && form.get('make').touched}"
+                  id="make"
+                  formControlName="make"
+                >
+              </div>
+            </div>
+            <div class="right-field">
+              <div class="form-group">
+                <label class="h6" for="model">Модель</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('model').valid && form.get('model').touched,
+                                      'is-invalid' : form.get('model').invalid && form.get('model').touched}"
+                  id="model"
+                  formControlName="model"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="d-inline">
+            <div class="left-field">
+              <div class="form-group">
+                <label class="h6" for="regPlate">Рег. Номер</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('regPlate').valid && form.get('regPlate').touched,
+                       'is-invalid' : form.get('regPlate').invalid && form.get('regPlate').touched}"
+                  id="regPlate"
+                  formControlName="regPlate"
+                >
+              </div>
+            </div>
+            <div class="right-field">
+              <div class="form-group">
+                <label class="h6" for="issueYear">Год выпуска</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('issueYear').valid && form.get('issueYear').touched,
+                          'is-invalid' : form.get('issueYear').invalid && form.get('issueYear').touched}"
+                  id="issueYear"
+                  formControlName="issueYear"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="d-inline">
+            <div class="left-field">
+              <div class="form-group">
+                <label class="h6" for="class">Класс</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('class').valid && form.get('class').touched,
+                                      'is-invalid' : form.get('class').invalid && form.get('class').touched}"
+                  id="class"
+                  formControlName="class"
+                >
+              </div>
+            </div>
+            <div class="right-field">
+              <div class="form-group">
+                <label class="h6" for="type">Тип кузова</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('type').valid && form.get('type').touched,
+                                      'is-invalid' : form.get('type').invalid && form.get('type').touched}"
+                  id="type"
+                  formControlName="type"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="d-inline">
+            <div class="left-field">
+              <div class="form-group">
+                <label class="h6" for="color">Цвет</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('color').valid && form.get('color').touched,
+                                      'is-invalid' : form.get('color').invalid && form.get('color').touched}"
+                  id="color"
+                  formControlName="color"
+                >
+              </div>
+            </div>
+            <div class="right-field">
+              <div class="form-group">
+                <label class="h6" for="capacity">Вместимость</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('capacity').valid && form.get('capacity').touched,
+                          'is-invalid' : form.get('capacity').invalid && form.get('capacity').touched}"
+                  id="capacity"
+                  formControlName="capacity"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="d-inline">
+            <div class="left-field">
+              <div class="form-group">
+                <label class="h6" for="bail">Залог (р)</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('bail').valid && form.get('bail').touched,
+                          'is-invalid' : form.get('bail').invalid && form.get('bail').touched}"
+                  id="bail"
+                  formControlName="bail"
+                >
+              </div>
+            </div>
+            <div class="right-field">
+              <div class="form-group">
+                <label class="h6" for="rentalCostPerDay">День ренты (р)</label>
+                <input
+                  type="text"
+                  class="form-control form-input"
+                  [ngClass]="{'is-valid' : form.get('rentalCostPerDay').valid && form.get('rentalCostPerDay').touched,
+                          'is-invalid' : form.get('rentalCostPerDay').invalid && form.get('rentalCostPerDay').touched}"
+                  id="rentalCostPerDay"
+                  formControlName="rentalCostPerDay"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="h6" for="insuranceCost">Страховая стоимость (р)</label>
+            <input
+              type="text"
+              class="form-control form-input"
+              [ngClass]="{'is-valid' : form.get('insuranceCost').valid && form.get('insuranceCost').touched,
+                       'is-invalid' : form.get('insuranceCost').invalid && form.get('insuranceCost').touched}"
+              id="insuranceCost"
+              formControlName="insuranceCost"
+            >
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="custom-file">
+                <input
+                  type="file"
+                  class="custom-file-input"
+                  id="carImageFile"
+                  formControlName="carImageFile"
+                  (change)="onFileChanged($event)"
+                >
+                <label class="custom-file-label text-black" for="carImageFile">
+                  <span *ngIf="!file">
+                    Выберите файл
+                  </span>
+                  <span *ngIf="file">
+                    {{file.name}}
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <button
+              type="submit"
+              class="btn btn-outline-primary btn-lg btn-block"
+              [disabled]="form.invalid"
+            >Добавить машину</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-mb-7">
+      <div *ngIf="vehicles" >
+        <div *ngFor="let vehicle of vehicles">
+          <div class="row mb-3 bg-light ml-3">
+            <div class="col-md-5">
+              <div class="image">
+                <img class="car-admin-image" src="../../../assets/images/cars/{{vehicle.vehicleImage}}"/>
+              </div>
+            </div>
+            <div class="col-md-7 second">
+              <div class="top">
+                <div class="heading-font mt-3">
+                  <h4>{{vehicle.make + ' '+ vehicle.model}}</h4>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col">
+                  <ul>
+                    <li>
+                      <span>Цвет - {{vehicle.color}}</span>
+                    </li>
+                    <li>
+                      <span>Тип кузова - {{vehicle.type}}</span>
+                    </li>
+                    <li>
+                      <span>Класс - {{vehicle.vehicleClass}}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col">
+                  <ul>
+                    <li>
+                      <span>Вместимость - {{vehicle.capacity}}</span>
+                    </li>
+                    <li>
+                      <span>Год выпуска - {{vehicle.issueYear}}</span>
+                    </li>
+                    <li>
+                      <span>Залог - {{vehicle.bail}}р</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {clientUrls} from "../../../config/clientUrls";
+import {CommonClientModel} from "../../models/commonClient.model";
 
 @Injectable()
 export class ClientService {
@@ -19,12 +20,12 @@ export class ClientService {
     return this.http.delete(clientUrls.delete + id.toString());
   }
 
-  createClient(client: any){
+  createClient(client: CommonClientModel){
     console.log(client);
-    return this.http.post(clientUrls.post, {client});
+    return this.http.post(clientUrls.post, client);
   }
 
-  updateVehicle(client: any){
-    return this.http.put(clientUrls.put, {client});
+  updateClient(client: CommonClientModel){
+    return this.http.put(clientUrls.put, client);
   }
 }

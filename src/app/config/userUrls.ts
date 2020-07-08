@@ -4,5 +4,6 @@ export const userUrls = {
   put: 'http://localhost:9999/user/update/',
   post: 'http://localhost:9999/user/create/',
   delete: 'http://localhost:9999/user/delete/',
-  getByEmail:'http://localhost:9999/user/findByEmail/'
+  getByEmail:'http://localhost:9999/user/findByEmail/',
+  setClient: 'http://localhost:9999/user/setClient/'
 };

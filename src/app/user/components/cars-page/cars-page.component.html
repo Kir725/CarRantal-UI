@@ -1,0 +1,187 @@
+<div class="container bg-light pt-2">
+  <div class="row">
+    <div class="col">
+      <div class="row search_header">
+        <div class="col">
+          <h3 class="title">Поиск</h3>
+        </div>
+      </div>
+      <div class="mb-3 bg-white pt-3 pb-1 search_body">
+        <div *ngIf="message.text" class="ml-4 mr-4">
+          <hr>
+          <div class="alert alert-{{message.type}}">
+            {{message.text}}
+          </div>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 pl-5 pr-5">
+            <form [formGroup]="form">
+              <div class="form-group">
+                <label for="pickupDate">Выберите дату начала аренды</label>
+                <div class="input-group">
+                  <input
+                    class="form-control"
+                    placeholder="дата начала"
+                    name="dp"
+                    id="pickupDate"
+                    formControlName="pickup"
+                    [ngClass]="{'is-valid' : form.get('pickup').valid && form.get('pickup').touched,
+                    'is-invalid' : form.get('pickup').invalid && form.get('pickup').touched}"
+                    ngbDatepicker #p="ngbDatepicker"
+                    container="body">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="p.toggle()" type="button">
+                      <fa-icon [icon]="faCalendar"></fa-icon>
+                    </button>
+                  </div>
+                  <div *ngIf="form.get('pickup').invalid && form.get('pickup').touched" class="invalid-feedback">
+                    <span>Введите корректную дату</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="mt-2" for="dropOffDate">Выберите дату окончания аренды</label>
+                <div class="input-group">
+                  <input
+                    class="form-control"
+                    placeholder="дата окончания"
+                    name="dp"
+                    id="dropOffDate"
+                    formControlName="dropOff"
+                    [ngClass]="{'is-valid' : form.get('dropOff').valid && form.get('dropOff').touched,
+                    'is-invalid' : form.get('dropOff').invalid && form.get('dropOff').touched}"
+                    ngbDatepicker #d="ngbDatepicker"
+                    container="body">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary"  (click)="d.toggle()" type="button">
+                      <fa-icon [icon]="faCalendar"></fa-icon>
+                    </button>
+                  </div>
+                  <div *ngIf="form.get('dropOff').invalid && form.get('dropOff').touched" class="invalid-feedback">
+                    <span>Введите корректную дату</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <label>Фильтр:</label>
+            <div>
+              <mat-form-field>
+                <mat-label>Mark</mat-label>
+                <mat-select [formControl]="marks" multiple>
+                  <mat-option (onSelectionChange)="getSelectedMarks($event)" *ngFor="let mark of marksList" [value]="mark">{{mark}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2 my-auto text-center">
+            <button type="button"
+                    class="btn btn-outline-success"
+                    (click)="searchCars()"
+                    [disabled]="form.invalid"
+            >Найти</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="row cars_header">
+            <div class="col">
+              <h4 class="title">Выберите машину</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div *ngFor="let vehicle of vehicles">
+            <div class="single-car">
+              <div class="row">
+                <div class="col-md-4 col-sm-4 first">
+                  <div class="image">
+                    <img class="car-image" src="../../../assets/images/cars/{{vehicle.vehicleImage}}"/>
+                  </div>
+                </div>
+                <div class="col-md-8 col-sm-8 second">
+                  <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                      <div class="top">
+                        <div class="heading-font">
+                          <h4>{{vehicle.make + ' '+ vehicle.model}}</h4>
+                        </div>
+                      </div>
+                      <div class="row mt-5">
+                        <div class="col">
+                          <ul>
+                            <li>
+                              <span>Цвет - {{vehicle.color}}</span>
+                            </li>
+                            <li>
+                              <span>Тип кузова - {{vehicle.type}}</span>
+                            </li>
+                            <li>
+                              <span>Класс - {{vehicle.vehicleClass}}</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="col">
+                          <ul>
+                            <li>
+                              <span>Вместимость - {{vehicle.capacity}}</span>
+                            </li>
+                            <li>
+                              <span>Год выпуска - {{vehicle.issueYear}}</span>
+                            </li>
+                            <li>
+                              <span>Залог - {{vehicle.bail}}р</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                      <div class="rent_price">
+                        <div class="text-center">
+                          <span
+                            class="h5"
+                            *ngIf="canCalcTotal">
+                           Итог {{totalRentCostCalcService
+                            .getTotalRentCost(vehicle.rentalCostPerDay,dropOffCalendar,pickupCalendar)}}р
+                          </span>
+                        </div>
+                        <div class="text-center mt-2">
+                          <span>{{vehicle.rentalCostPerDay}}р/день</span>
+                        </div>
+                        <div class="text-center mt-2">
+                          <button
+                            type="button"
+                            class="btn btn-outline-primary"
+                            [routerLink]="['/contract',pickupDate,dropOffDate]"
+                            [queryParams]="
+                            {id: vehicle.id,
+                            make:vehicle.make,
+                            model:vehicle.model,
+                            bail:vehicle.bail,
+                            rentalCostPerDay:vehicle.rentalCostPerDay,
+                            image:vehicle.vehicleImage}"
+                            [disabled]="!(pickupDate && dropOffDate)"
+                          >Забронировать</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

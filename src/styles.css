@@ -22,4 +22,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   position: relative;
   background: white;
 }
-
+.left-field{
+  float: left;
+  width: 48%;
+}
+.right-field{
+  float: right;
+  width: 48%;
+}

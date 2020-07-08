@@ -1,0 +1,318 @@
+<div class="container-fluid bg-white">
+<div class="container container-height">
+  <h3 class="mt-5 mb-3">Заказ</h3>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="rent_order_info">
+            <div>
+              <h4>{{vehicle.make}} {{vehicle.model}}</h4>
+            </div>
+            <div class="image text-center">
+              <img class="car-image" src="../../../assets/images/cars/{{vehicle.vehicleImage}}"/>
+            </div>
+            <div class="rent_table">
+              <div class=" mt-2 mb-2">
+                <h4>Детали заказа</h4>
+              </div>
+              <table>
+                <thead class="h5">
+                <tr>
+                  <td>Длительность(дни)</td>
+                  <td>Ставка</td>
+                  <td>Итог</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td colspan="3" class="divider"></td>
+                </tr>
+                <tr>
+                  <td>{{days}}</td>
+                  <td>
+
+                      <span>{{vehicle.rentalCostPerDay}} p</span>
+                  </td>
+                  <td>
+                    <span>{{totalRentCost}}p</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="h5 rent-total">
+              <table>
+                <tbody class="bg-light"><tr>
+                  <td>Окончательная стоимость</td>
+                  <td>
+                    <span>{{totalRentCost}}p</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <form [formGroup]="form" (ngSubmit)="addContract()">
+            <div class="form-fields">
+              <h4 class="mb-4">Ваши данные</h4>
+            <div class="field-wrapper">
+              <div *ngIf="currentUser">
+                <div *ngIf="currentUser.clientId">
+                  <div mt-3>
+                    <div *ngIf="indClient" class="h6">
+                      <p>Имя: {{indClient.secondName}} {{indClient.name}} {{indClient.middleName}}.</p>
+                      <p>Email: {{indClient.email}}.</p>
+                      <p>Телефон: {{indClient.phone}}.</p>
+                      <p>Заказ будет оформлен на ваш аккаунт.</p>
+                    </div>
+                    <div *ngIf="legalClient"  class="h6">
+                      <p>Организация: {{legalClient.name}}</p>
+                      <p>Код: {{legalClient.organizationCode}}</p>
+                      <p>Email: {{legalClient.email}}</p>
+                      <p>Телефон: {{legalClient.phone}}</p>
+                      <p>Заказ будет оформлен на ваш аккаунт.</p>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <button
+                      type="button"
+                      (click)="addContractForUser()"
+                      class="btn btn-outline-success btn-lg btn-block "
+                    >Забронировать</button>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!currentUser || (currentUser && !currentUser.clientId)">
+                <div class="form-group">
+                  <label class="h5" for="email">Email</label>
+                  <input
+                    type="text"
+                    class="form-control form-input"
+                    [ngClass]="{'is-valid' : form.get('email').valid && form.get('email').touched,
+                    'is-invalid' : form.get('email').invalid && form.get('email').touched}"
+                    id="email"
+                    formControlName="email"
+                  >
+                  <div *ngIf="form.get('email').invalid && form.get('email').touched" class="invalid-feedback" >
+                    <span *ngIf="email.errors.email">Введите корректный Email</span>
+                    <span *ngIf="email.errors.required">Email не может быть пустым</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="h5" for="phone">Телефон</label>
+                  <input
+                    type="text"
+                    class="form-control form-input"
+                    [ngClass]="{'is-valid' : form.get('phone').valid && form.get('phone').touched,
+                    'is-invalid' : form.get('phone').invalid && form.get('phone').touched}"
+                    id="phone"
+                    formControlName="phone"
+                  >
+                  <div *ngIf="form.get('phone').invalid && form.get('phone').touched" class="invalid-feedback" >
+                    <span *ngIf="phone.errors.pattern">Номер должен содержать 11 чисел</span>
+                    <span *ngIf="phone.errors.required">Номер не может быть пустым</span>
+                  </div>
+                </div>
+                <div class="create-akk" *ngIf="!currentUser">
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="createAkk"
+                        checked=""
+                        formControlName="createAkk"
+                      >
+                      <label class="custom-control-label" for="createAkk">Создать аккаунт?</label>
+                    </div>
+                  </div>
+                  <div class="form-group" *ngIf="isCreate.value">
+                    <label class="h5" for="password">Пароль</label>
+                    <input
+                      type="password"
+                      class="form-control form-input"
+                      [ngClass]="{'is-valid' : form.get('password').valid && form.get('password').touched,
+                    'is-invalid' : form.get('password').invalid && form.get('password').touched}"
+                      id="password"
+                      formControlName="password"
+                    >
+                    <div *ngIf="form.get('password').invalid && form.get('password').touched" class="invalid-feedback" >
+                      <span *ngIf="password.errors.required">Пароль не может быть пустым</span>
+                      <span *ngIf="password.errors.minlength">Пароль должен быть больше 6ти символов</span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="btn-group btn-group-toggle"
+                       ngbRadioGroup name="radioBasic"
+                       formControlName="clientType">
+                    <label ngbButtonLabel class="btn-outline-primary">
+                      <input ngbButton type="radio" value="ind"> Физ-лицо
+                    </label>
+                    <label ngbButtonLabel class="btn-outline-primary">
+                      <input ngbButton type="radio" value="legal"> Юр-лицо
+                    </label>
+                  </div>
+                  <div id="ind"
+                       *ngIf="form.value['clientType']==='ind'">
+
+                    <div class="d-inline">
+                      <div class="left-field mt-3">
+                        <div class="form-group">
+                          <label class="h5" for="name">Имя</label>
+                          <input
+                            type="text"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('name').valid && form.get('name').touched,
+                                      'is-invalid' : form.get('name').invalid && form.get('name').touched}"
+                            id="name"
+                            formControlName="name"
+                          >
+                        </div>
+                      </div>
+                      <div class="right-field mt-3">
+                        <div class="form-group">
+                          <label class="h5" for="secondName">Фамилия</label>
+                          <input
+                            type="text"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('secondName').valid && form.get('secondName').touched,
+                                      'is-invalid' : form.get('secondName').invalid && form.get('secondName').touched}"
+                            id="secondName"
+                            formControlName="secondName"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="h5" for="middleName">Отчество</label>
+                      <input
+                        type="text"
+                        class="form-control form-input"
+                        [ngClass]="{'is-valid' : form.get('middleName').valid && form.get('middleName').touched,
+                    'is-invalid' : form.get('middleName').invalid && form.get('middleName').touched}"
+                        id="middleName"
+                        formControlName="middleName"
+                      >
+                    </div>
+
+                    <div class="d-inline">
+                      <div class="left-field">
+                        <div class="form-group">
+                          <label class="h5" for="passportId">Номер паспорта</label>
+                          <input
+                            type="text"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('passportId').valid && form.get('passportId').touched,
+                                      'is-invalid' : form.get('passportId').invalid && form.get('passportId').touched}"
+                            id="passportId"
+                            formControlName="passportId"
+                          >
+                        </div>
+                      </div>
+                      <div class="right-field">
+                        <div class="form-group">
+                          <label class="h5" for="passportSeries">Серия паспорта</label>
+                          <input
+                            type="text"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('passportSeries').valid && form.get('passportSeries').touched,
+                                      'is-invalid' : form.get('passportSeries').invalid && form.get('passportSeries').touched}"
+                            id="passportSeries"
+                            formControlName="passportSeries"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-inline">
+                      <div class="left-field">
+                        <div class="form-group">
+                          <label class="h5" for="birthDate">Дата рождения</label>
+                          <input
+                            type="date"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('birthDate').valid && form.get('birthDate').touched,
+                                      'is-invalid' : form.get('birthDate').invalid && form.get('birthDate').touched}"
+                            id="birthDate"
+                            formControlName="birthDate"
+                          >
+                        </div>
+                      </div>
+                      <div class="right-field">
+                        <div class="form-group">
+                          <label class="h5" for="drivingExperience">Стаж вождения(лет)</label>
+                          <input
+                            type="text"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('drivingExperience').valid && form.get('drivingExperience').touched,
+                                      'is-invalid' : form.get('drivingExperience').invalid && form.get('drivingExperience').touched}"
+                            id="drivingExperience"
+                            formControlName="drivingExperience"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="legal"
+                       *ngIf="form.value['clientType']==='legal'">
+                    <div class="d-inline">
+                      <div class="left-field mt-3">
+                        <div class="form-group">
+                          <label class="h5" for="organizationName">Название организации</label>
+                          <input
+                            type="text"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('organizationName').valid && form.get('organizationName').touched,
+                                      'is-invalid' : form.get('organizationName').invalid && form.get('organizationName').touched}"
+                            id="organizationName"
+                            formControlName="organizationName"
+                          >
+                        </div>
+                      </div>
+                      <div class="right-field mt-3">
+                        <div class="form-group">
+                          <label class="h5" for="organizationCode">Код огранизации(ОКПО)</label>
+                          <input
+                            type="text"
+                            class="form-control form-input"
+                            [ngClass]="{'is-valid' : form.get('organizationCode').valid && form.get('organizationCode').touched,
+                                      'is-invalid' : form.get('organizationCode').invalid && form.get('organizationCode').touched}"
+                            id="organizationCode"
+                            formControlName="organizationCode"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="h5" for="agent">Доверенное лицо</label>
+                      <input
+                        type="text"
+                        class="form-control form-input"
+                        [ngClass]="{'is-valid' : form.get('agent').valid && form.get('agent').touched,
+                    'is-invalid' : form.get('agent').invalid && form.get('agent').touched}"
+                        id="agent"
+                        formControlName="agent"
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success btn-lg btn-block "
+                  >Забронировать</button>
+                </div>
+              </div>
+
+            </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+  </div>
+</div>

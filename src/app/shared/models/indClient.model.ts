@@ -1,26 +1,29 @@
-export interface IndClientModel {
+import {CommonClientModel} from "./commonClient.model";
 
-  id?: number;
+export class IndClientModel extends CommonClientModel{
 
-  email: string;
+  public email: string;
 
-  phone: number;
+  public phone: number;
 
-  name: string;
+  public name: string;
 
-  clientType: string;
+  public type: string;
 
-  type: string;
+  public secondName: string;
 
-  secondName: string;
+  public middleName: string;
 
-  middleName: string;
+  public drivingExperience: number;
 
-  drivingExperience: number;
+  public passportSeries: number;
 
-  passportSeries: number;
+  public passportId: number;
 
-  passportId: number;
+  public birthDate: Date;
 
-  birthDate: Date;
+  constructor() {
+    super();
+  }
+
 }

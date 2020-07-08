@@ -16,4 +16,12 @@ export class UserService {
   createUser(user:User){
     return this.http.post(userUrls.post, user);
   }
+
+  updateUser(user: User){
+    return this.http.put(userUrls.put, user);
+  }
+
+  setClientForUser(user: User){
+    return this.http.put(userUrls.setClient + user.id + '/' + user.clientId,{});
+  }
 }

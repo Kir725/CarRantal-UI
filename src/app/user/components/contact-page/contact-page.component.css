@@ -1,0 +1,15 @@
+textarea {
+  resize: none;
+}
+.form-input:focus {
+  outline: none !important;
+  background-color: #ffffff;
+}
+
+.form-input{
+  outline: none !important;
+  background-color: #ecf0f1;
+}
+.info-container{
+  height: 630px;
+}

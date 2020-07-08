@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from '@angular/material/select';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 
@@ -10,8 +11,8 @@ import {MatSelectModule} from '@angular/material/select';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
-
+    MatSelectModule,
+    FontAwesomeModule,
   ],
   exports: [
     FormsModule,

@@ -1,86 +1,20 @@
-export class LegalClientModel {
+import {CommonClientModel} from "./commonClient.model";
 
-  private _id?: number;
+export class LegalClientModel extends CommonClientModel{
 
-  private _name: string;
+  public name: string;
 
-  private _clientType: string;
+  public type: string;
 
-  private _type: string;
+  public phone: number;
 
-  private _phone: number;
+  public email: string;
 
-  private _email: string;
+  public agent: string;
 
-  private _agent: string;
-
-  private _organizationCode: string;
+  public organizationCode: string;
 
   constructor() {
-  }
-
-
-  get id(): number {
-    return this._id;
-  }
-
-  set id(value: number) {
-    this._id = value;
-  }
-
-  get name(): string {
-    return this._name;
-  }
-
-  set name(value: string) {
-    this._name = value;
-  }
-
-  get clientType(): string {
-    return this._clientType;
-  }
-
-  set clientType(value: string) {
-    this._clientType = value;
-  }
-
-  get type(): string {
-    return this._type;
-  }
-
-  set type(value: string) {
-    this._type = value;
-  }
-
-  get phone(): number {
-    return this._phone;
-  }
-
-  set phone(value: number) {
-    this._phone = value;
-  }
-
-  get email(): string {
-    return this._email;
-  }
-
-  set email(value: string) {
-    this._email = value;
-  }
-
-  get agent(): string {
-    return this._agent;
-  }
-
-  set agent(value: string) {
-    this._agent = value;
-  }
-
-  get organizationCode(): string {
-    return this._organizationCode;
-  }
-
-  set organizationCode(value: string) {
-    this._organizationCode = value;
+    super();
   }
 }

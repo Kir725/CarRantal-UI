@@ -1,0 +1,57 @@
+<div class="mb-4">
+  <div>
+    <span class="h4">Клиенты</span>
+  </div>
+  <div *ngIf="clients">
+    <div *ngFor="let client of clients; let i = index">
+      <div *ngIf="client.clientType === 'физ'" class="mt-3 client bg-light">
+        <div class="row">
+          <div class="col-md-4">
+            <span class="h5">
+            {{$any(client).secondName}} {{$any(client).name}} {{$any(client).middleName}}
+          </span>
+          </div>
+          <div class="col-md-8">
+            <div>
+            <span class="h6">
+              Данные:
+            </span>
+            </div>
+            <div class="row mt-2">
+              <div class="col">
+                <p>Email:<span class="ml-2">{{$any(client).email}}</span></p>
+                <p>Телефон:<span class="ml-2">{{$any(client).email}}</span></p>
+              </div>
+              <div class="col">
+                <p>Пасспорт:<span class="ml-2">{{$any(client).passportSeries}} {{$any(client).passportId}}</span></p>
+                <p>Дата рождения:<span class="ml-2">{{$any(client).birthDate}}</span></p>
+              </div>
+              <div class="col text-center">
+                <button class="btn btn-outline-primary" type="button" (click)="isCollapsed[i] = !isCollapsed[i]">
+                  Контракты
+                  <fa-icon class="ml-1" [icon]="faAngleDown"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div [ngbCollapse]="!isCollapsed[i]">
+            <div *ngIf="client.contracts">
+              <div *ngFor="let contract of client.contracts">
+                <div class="client-contract mt-2 bg-white" *ngIf="contract.vehicle">
+                  <span class="h6">№ {{contract.id}}</span>
+                  <span class="h6 ml-3">Дата начала: {{contract.startDate}}</span>
+                  <span class="h6 ml-3">Дата окончания: {{contract.dropOffDate}}</span>
+                  <span class="h6 ml-3">Стоимость: {{contract.rentalCost}}р</span>
+                  <span class="h6 ml-3">Машина: {{contract.vehicle.make}} {{contract.vehicle.model}}</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!client.contracts" class="text-center mt-2">
+              <span class="h6"> У данного клиента нет контрактов.</span>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
